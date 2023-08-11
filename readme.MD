@@ -23,9 +23,9 @@ This application is a basic little test harness that we can use to develop, debu
 - Using only local storage: if a user is authenticated then it will store their API token in local browser storage.
 - If there is no token, they aren't logged in, so it will just show a login button (kind of like what BOOM does https://boom.bluetail.aero/)
 - Clicking the login button will redirect to the auth server.
-   - locally http://localhost:3005/oauth/authenticate?response_type=code&client_id=cessna_skyhawk&redirect_uri=http://localhost:3006/oauth_response
-   - QA https://auth.qa.bluetail-dev.com/oauth/authenticate?response_type=code&client_id=cessna_skyhawk&redirect_uri=https://cessna_skyhawk.qa.bluetail-dev.com/oauth_response
-   - prod https://auth.bluetail.aero/oauth/authenticate?response_type=code&client_id=cessna_skyhawk&redirect_uri=https://cessna_skyhawk.prod.bluetail-dev.com/oauth_response
+   - locally http://localhost:3005/oauth/authenticate?response_type=code&client_id=cessna_skyhawk&redirect_uri=http://localhost:3006/oauth_callback
+   - QA https://auth.qa.bluetail-dev.com/oauth/authenticate?response_type=code&client_id=cessna_skyhawk&redirect_uri=https://cessna_skyhawk.qa.bluetail-dev.com/oauth_callback
+   - prod https://auth.bluetail.aero/oauth/authenticate?response_type=code&client_id=cessna_skyhawk&redirect_uri=https://cessna_skyhawk.prod.bluetail-dev.com/oauth_callback
 - **OAuth login stuff happens. User gets redirected back to the test harness ...**
 - When there is a valid token the "home page" of the app will unpack all the details we have about the user: 
   - token, 
@@ -38,3 +38,13 @@ This application is a basic little test harness that we can use to develop, debu
   - Logout (purge local storage)
 
 TADA! 🎉
+
+# Env variables?
+
+This app will need some oauth_client settings:
+
+| Environment | REACT_APP_OAUTH_REDIRECT_URL                                | REACT_APP_OAUTH_CLIENT_ID | REACT_APP_OAUTH_CLIENT_SECRET |
+| ----------- | ----------------------------------------------------------- | ------------------------- | ----------------------------- |
+| local       | http://localhost:3006/oauth_callback                        | cessna_skyhawk            | btjJvcqiycM3Q3JE6ve7AJVP      |
+| qa:         | https://cessna_skyhawk.qa.bluetail-dev.com/oauth_callback   | cessna_skyhawk            | ************************      |
+| prod:       | https://cessna_skyhawk.prod.bluetail-dev.com/oauth_callback | cessna_skyhawk            | ************************      |
