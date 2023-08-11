@@ -48,3 +48,11 @@ This app will need some oauth_client settings:
 | local       | http://localhost:3006/oauth_callback                        | cessna_skyhawk            | btjJvcqiycM3Q3JE6ve7AJVP      |
 | qa:         | https://cessna_skyhawk.qa.bluetail-dev.com/oauth_callback   | cessna_skyhawk            | ************************      |
 | prod:       | https://cessna_skyhawk.prod.bluetail-dev.com/oauth_callback | cessna_skyhawk            | ************************      |
+
+Also ...
+
+| Environment | REACT_APP_OAUTH_LOGIN_URL                             |
+| ----------- | ----------------------------------------------------- |
+| local       | http://localhost:3005/oauth/authenticate              |
+| qa:         | https://auth.qa.bluetail-dev.com/oauth/authenticate   |
+| prod:       | https://auth.bluetail.aero/oauth/authenticate         |
