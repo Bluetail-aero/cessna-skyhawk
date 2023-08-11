@@ -51,8 +51,8 @@ This app will need some oauth_client settings:
 
 Also ...
 
-| Environment | REACT_APP_OAUTH_LOGIN_URL                             |
-| ----------- | ----------------------------------------------------- |
-| local       | http://localhost:3005/oauth/authenticate              |
-| qa:         | https://auth.qa.bluetail-dev.com/oauth/authenticate   |
-| prod:       | https://auth.bluetail.aero/oauth/authenticate         |
+| Environment | REACT_APP_OAUTH_SERVER            |
+| ----------- | --------------------------------- |
+| local       | http://localhost:3005             |
+| qa:         | https://auth.qa.bluetail-dev.com  |
+| prod:       | https://auth.bluetail.aero        |
