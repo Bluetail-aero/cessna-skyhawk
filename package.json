@@ -1,0 +1,91 @@
+{
+  "name": "cessna_skyhawk",
+  "version": "2023.8.1",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Bluetail-aero/cessna_skyhawk"
+  },
+  "private": true,
+  "scripts": {
+    "start": "echo 'You are looking for either start:local, start:qa or start:prod' && exit 1",
+    "start:env": "env-cmd -f env/.env react-scripts start",
+    "start:local": "env-cmd -f env/.env.local react-scripts start",
+    "start:qa": "env-cmd -f env/.env.qa react-scripts start",
+    "start:prod": "env-cmd -f env/.env.prod react-scripts start",
+    "build": "echo 'You are looking for either build:qa or build:prod' && exit 1",
+    "build:qa": "env-cmd -f env/.env.qa react-scripts build",
+    "build:prod": "env-cmd -f env/.env.prod react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "lint": "eslint --cache --ext js --ext jsx --ext ts --ext tsx ./",
+    "lint:fix": "eslint --cache --fix --ext js --ext jsx --ext ts --ext tsx ./",
+    "lint:watch": "eslint --cache --watch --ext js --ext jsx --ext ts --ext tsx ./"
+  },
+  "dependencies": {
+    "@datadog/browser-rum": "4.30.0",
+    "@emotion/cache": "11.10.5",
+    "@emotion/react": "11.10.6",
+    "@emotion/styled": "11.10.6",
+    "@fontsource/roboto": "4.5.8",
+    "@mui/lab": "5.0.0-alpha.122",
+    "@mui/material": "5.11.12",
+    "@mui/system": "5.11.12",
+    "@tanstack/react-query": "4.26.1",
+    "@tanstack/react-query-devtools": "4.26.1",
+    "@testing-library/jest-dom": "5.16.5",
+    "@testing-library/react": "13.4.0",
+    "@testing-library/user-event": "13.5.0",
+    "@tippyjs/react": "4.2.6",
+    "autoprefixer": "10",
+    "core-js": "3.8.3",
+    "fast-deep-equal": "3.1.3",
+    "history": "^5.3.0",
+    "http-proxy-middleware": "2.0.6",
+    "lodash.clonedeep": "4.5.0",
+    "pdfjs-dist": "3.2.146",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "react-dropzone": "14.2.3",
+    "react-icons": "4.8.0",
+    "react-pdf": "6.2.2",
+    "react-router": "^6.9.0",
+    "react-router-dom": "^6.9.0",
+    "react-scripts": "5.0.1",
+    "react-toastify": "9.1.1",
+    "zustand": "4.3.6"
+  },
+  "devDependencies": {
+    "@emotion/eslint-plugin": "11.10.0",
+    "@tanstack/eslint-plugin-query": "4.26.2",
+    "env-cmd": "10.1.0",
+    "eslint": "8.2.0",
+    "eslint-config-airbnb": "19.0.4",
+    "eslint-import-resolver-alias": "1.1.2",
+    "eslint-plugin-file-progress": "1.3.0",
+    "eslint-plugin-import": "2.25.3",
+    "eslint-plugin-jsx-a11y": "6.5.1",
+    "eslint-plugin-react": "7.28.0",
+    "eslint-plugin-react-hooks": "4.3.0"
+  },
+  "eslintConfig": {
+    "root": true,
+    "env": {
+      "node": true
+    },
+    "extends": [
+      "react-app",
+      "react-app/jest",
+      "eslint:recommended"
+    ],
+    "parserOptions": {
+      "parser": "@babel/eslint-parser"
+    },
+    "rules": {}
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead",
+    "not ie 11"
+  ]
+}

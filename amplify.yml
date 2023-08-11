@@ -1,0 +1,18 @@
+version: 1
+frontend:
+  phases:
+    preBuild:
+      commands:
+        - npm ci
+    build:
+      commands:
+        - if [ "${AWS_BRANCH}" = "dev" ]; then npm run build:qa; fi
+        - if [ "${AWS_BRANCH}" = "master" ]; then npm run build:prod; fi
+  artifacts:
+    baseDirectory: build
+    files:
+      - '**/*'
+  cache:
+    paths:
+      - node_modules/**/*
+      
