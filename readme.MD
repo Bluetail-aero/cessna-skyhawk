@@ -48,13 +48,7 @@ TADA! 🎉
 ### Example local env
 
 ```
-# These SESSION_REPLAY settings are there for use with DataDog user session recording, which we use on production to replay any issues users are reporting.
-REACT_APP_SESSION_REPLAY_ENABLED=true
-REACT_APP_SESSION_REPLAY_env=local
-REACT_APP_SESSION_REPLAY_sampleRate=100
-REACT_APP_SESSION_REPLAY_sessionReplaySampleRate=100
-NODE_ENV=development
-PORT=3101
+PORT=3006
 REACT_APP_API_DOMAIN=/api
 REACT_APP_OAUTH_REDIRECT_URL=http://localhost:3006/oauth_callback
 REACT_APP_OAUTH_CLIENT_ID=cessna_skyhawk
