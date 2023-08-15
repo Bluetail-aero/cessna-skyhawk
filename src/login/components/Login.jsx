@@ -42,7 +42,8 @@ function View({ onClick, secret, storeSecret }) {
   return (
     <div css={styles.center}>
       <div css={styles.container}>
-        <h1 css={styles.title}>Public API</h1>
+        <h1 css={styles.title}>Ceesna Skyhawk 🛩️</h1>
+        <div css={styles.subheader}>Bluetail Public API Test Harness</div>
         <div>
           <TextField label="Secret" variant="standard" name="secret" onChange={storeSecret} value={secret} />
         </div>
