@@ -1,12 +1,11 @@
-import { AUTH_STATUS, authStore } from 'login/hooks/useAuthStore';
+import { authStore } from 'login/hooks/useAuthStore';
 import { toast } from 'react-toastify';
 
 const BluetailAPI = async (url, options) => {
-  // In development mode, fallback on the proxy defined in package.json until BOOM has a proper CORS policy
-  const domain = process.env.REACT_APP_API_DOMAIN;
+  const domain = process.env.REACT_APP_PUBLIC_API;
 
   if (!options.external) {
-    return fetch(`${domain}${url}`, options);
+    return fetch(`${domain}/${url}`, options);
   }
 
   // External API, remove domain and credentials
@@ -35,9 +34,9 @@ const getApi = async (url, opts = {}) => {
 
     if (!response.ok && fullOpts.ignoreOkCheck !== true) {
       if (response.status === 401) {
-        const { setAuthState } = authStore;
+        const { logout } = authStore;
 
-        setAuthState(AUTH_STATUS.LOGGED_OUT);
+        logout();
         toast.error('Session has expired, please log in again!');
       }
 

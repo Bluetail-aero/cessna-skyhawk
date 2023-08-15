@@ -2,7 +2,6 @@ import {
   BrowserRouter as Router,
   Routes,
   Route,
-  Navigate,
 } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 
@@ -11,7 +10,7 @@ import history from 'common/const/history';
 import TopErrorBoundary from 'common/components/TopErrorBoundary';
 import App from 'app/index';
 import Login from 'login/index';
-import { selectIsAuthenticated, useAuthStore } from 'login/hooks/useAuthStore';
+import { useAuthStore } from 'login/hooks/useAuthStore';
 
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -29,21 +28,17 @@ function View({ isAuthenticated }) {
         >
           <Routes>
             {isAuthenticated && (
-            <Route
-              path="/"
-              element={<App />}
-            />
+              <Route
+                path="*"
+                element={<App />}
+              />
             )}
             {!isAuthenticated && (
-            <Route
-              path="/"
-              element={<Login />}
-            />
+              <Route
+                path="*"
+                element={<Login />}
+              />
             )}
-            <Route
-              path="*"
-              element={<Navigate to="/" />}
-            />
           </Routes>
         </Router>
       </TopErrorBoundary>
@@ -52,10 +47,10 @@ function View({ isAuthenticated }) {
 }
 
 function Model() {
-  const isAuthenticated = useAuthStore(selectIsAuthenticated);
+  const { accessToken } = useAuthStore();
 
   const hookProps = {
-    isAuthenticated,
+    isAuthenticated: accessToken !== null,
   };
 
   return (
