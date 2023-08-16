@@ -2,10 +2,15 @@ import { authStore } from 'login/hooks/useAuthStore';
 import { toast } from 'react-toastify';
 
 const BluetailAPI = async (url, options) => {
-  const domain = process.env.REACT_APP_PUBLIC_API;
+  const domain = process.env.REACT_APP_PUBLIC_API || '';
+
+  if (options.headers.Authorization) {
+    // eslint-disable-next-line no-param-reassign
+    delete options.credentials;
+  }
 
   if (!options.external) {
-    return fetch(`${domain}/${url}`, options);
+    return fetch(`${domain}${url}`, options);
   }
 
   // External API, remove domain and credentials
