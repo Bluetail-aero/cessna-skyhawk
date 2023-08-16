@@ -3,4 +3,5 @@ export const redirectUrl = `
   response_type=code
   &client_id=${process.env.REACT_APP_OAUTH_CLIENT_ID}
   &redirect_uri=${process.env.REACT_APP_OAUTH_REDIRECT_URL}
+  &scope=${encodeURIComponent('read document.upload')}
   &state=none`;

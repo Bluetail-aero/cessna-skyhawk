@@ -9,7 +9,7 @@ const authStore = createStore(persist((set) => ({
   setAuthToken: (accessToken) => set({ accessToken }),
   setRefreshToken: (refreshToken) => set({ refreshToken }),
   setTokens: (accessToken, refreshToken) => set({ accessToken, refreshToken }),
-  logout: () => set({ authToken: null, refreshToken: null }),
+  logout: () => set({ accessToken: null, refreshToken: null }),
   setSecret: (authSecret) => set({ authSecret }),
 }), {
   name: 'auth-storage',

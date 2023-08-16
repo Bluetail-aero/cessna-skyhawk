@@ -33,7 +33,7 @@ const leftPanelStyle = css({
   maxWidth: '15%',
   maxHeight: '100%',
   overflowY: 'auto',
-  padding: '1rem',
+  padding: '0.25rem',
 });
 
 const rightPanelStyle = css({

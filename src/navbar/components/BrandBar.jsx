@@ -3,8 +3,6 @@ import {
   Box,
 } from '@mui/material';
 import { css } from '@emotion/react';
-import { useLocation } from 'react-router-dom';
-import { getRouteTextByPathname } from 'navbar/const/apiRoutes';
 
 const actionBarBoxStyle = css({
   display: 'flex',
@@ -19,28 +17,17 @@ const actionBarBoxStyle = css({
   color: 'white',
 });
 
-function View({ currentRoute }) {
+function View() {
   return (
     <Box css={actionBarBoxStyle}>
       Cessna Skyhawk 🛩️
-      {' '}
-      {currentRoute && (
-        // eslint-disable-next-line react/jsx-no-useless-fragment
-        <>
-          {`- ${currentRoute}`}
-        </>
-      )}
     </Box>
   );
 }
 
 function Model() {
-  const location = useLocation();
-
-  const currentRoute = getRouteTextByPathname(location.pathname);
-
   const hookProps = {
-    currentRoute,
+
   };
 
   return (

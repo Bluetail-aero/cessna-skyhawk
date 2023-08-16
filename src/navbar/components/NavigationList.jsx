@@ -1,23 +1,52 @@
 /** @jsxImportSource @emotion/react */
 
-import { Link } from 'react-router-dom';
-import { apiRoutes } from 'navbar/const/apiRoutes';
+import { css } from '@emotion/react';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { apiRoutes, getRouteTextByPathname } from 'navbar/const/apiRoutes';
+import { ListItemText, MenuItem, MenuList } from '@mui/material';
+import { useCallback } from 'react';
 
-function View() {
+const styles = {
+  menuItem: css({
+    '&.Mui-selected': {
+      backgroundColor: 'rgba(25, 118, 210, 0.5)',
+    },
+    '&.Mui-selected:hover': {
+      backgroundColor: 'rgba(25, 118, 210, 0.5)',
+    },
+  }),
+};
+
+function View({ doNavigate, currentRoute }) {
   return (
-    <ul>
+    <MenuList>
       {apiRoutes.map(({ text, route }) => (
-        <li key={route}>
-          <Link to={route}>{text}</Link>
-        </li>
+        <MenuItem
+          key={route}
+          css={styles.menuItem}
+          onClick={() => doNavigate(route)}
+          selected={currentRoute === text}
+        >
+          <ListItemText>{text}</ListItemText>
+        </MenuItem>
       ))}
-    </ul>
+    </MenuList>
   );
 }
 
 function Model() {
-  const hookProps = {
+  const navigate = useNavigate();
+  const location = useLocation();
 
+  const currentRoute = getRouteTextByPathname(location.pathname);
+
+  const doNavigate = useCallback((route) => {
+    navigate(route);
+  }, [navigate]);
+
+  const hookProps = {
+    doNavigate,
+    currentRoute,
   };
 
   return (

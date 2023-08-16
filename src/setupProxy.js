@@ -2,7 +2,7 @@ const { createProxyMiddleware } = require('http-proxy-middleware');
 
 module.exports = (app) => {
   app.use(
-    '*localhost:3005*',
+    '/oauth',
     createProxyMiddleware({
       target: 'http://localhost:3005',
       changeOrigin: true,
@@ -10,7 +10,7 @@ module.exports = (app) => {
   );
 
   app.use(
-    '*localhost:3004*',
+    '/documents',
     createProxyMiddleware({
       target: 'http://localhost:3004',
       changeOrigin: true,
