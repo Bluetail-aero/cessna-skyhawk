@@ -25,11 +25,11 @@ function View() {
       />
       <Route
         path="/requestUpload"
-        element={<FinalizeUpload />}
+        element={<RequestUpload />}
       />
       <Route
         path="/finalizeUpload"
-        element={<RequestUpload />}
+        element={<FinalizeUpload />}
       />
       <Route
         path="*"

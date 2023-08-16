@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
-
+import JSONPrettyMon from 'react-json-pretty/dist/monikai';
 import JSONInput from 'react-json-editor-ajrm';
 import locale from 'react-json-editor-ajrm/locale/en';
 import JSONPretty from 'react-json-pretty';
@@ -24,17 +24,21 @@ const styles = {
     marginBottom: '2rem',
     marginTop: '1rem',
   }),
-  apiParam: css({
-    width: '100%',
-    marginLeft: '.5rem',
-  }),
-  submitButton: css({
-    marginTop: '2rem',
-  }),
   jsonInput: css({
     '& > div > span > span': {
       fontSize: '16px',
     }
+  }),
+  submitButton: css({
+    marginTop: '2rem',
+  }),
+  resultHeader: css({
+    fontSize: '1.5rem',
+    fontWeight: 'bold',
+  }),
+  jsonResult: css({
+    marginTop: '1rem',
+    marginBottom: '1rem',
   }),
 };
 
@@ -55,13 +59,15 @@ function View({
           onChange={doChange}
           style={{ body: { fontSize: '16px', }, }}
         />
-        <Button css={styles.submitButton} type="submit">Try it!</Button>
+        <Button css={styles.submitButton} variant="contained" type="submit">Try it!</Button>
       </form>
       {resultJson && (
       <div css={styles.section}>
+        <div css={styles.resultHeader}>Result</div>
         <JSONPretty
           data={resultJson}
           css={styles.jsonResult}
+          theme={JSONPrettyMon}
         />
       </div>
       )}
@@ -76,7 +82,6 @@ function Model() {
 
   // https://www.npmjs.com/package/react-json-editor-ajrm
   const doChange = useCallback(({ jsObject }) => {
-    debugger;
     setJson(jsObject);
   }, []);
 
