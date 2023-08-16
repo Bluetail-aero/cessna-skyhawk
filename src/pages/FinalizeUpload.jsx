@@ -4,7 +4,7 @@
 function View() {
   return (
     <div>
-      Hello World!
+      Are we there yet?
     </div>
   );
 }

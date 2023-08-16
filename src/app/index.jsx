@@ -1,10 +1,8 @@
-import AircraftDocumentTool from 'pages/AircraftDocumentTool';
+import Navbar from 'navbar/index';
 
 function View() {
   return (
-    <div>
-      <AircraftDocumentTool />
-    </div>
+    <Navbar />
   );
 }
 
