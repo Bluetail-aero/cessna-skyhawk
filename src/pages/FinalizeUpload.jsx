@@ -4,7 +4,7 @@ import JSONPrettyMon from 'react-json-pretty/dist/monikai';
 import JSONInput from 'react-json-editor-ajrm';
 import locale from 'react-json-editor-ajrm/locale/en';
 import JSONPretty from 'react-json-pretty';
-import { useListAircraftFolders } from 'documentation/hooks/useListAircraftFolders';
+import { useFinalizeUpload } from 'documentation/hooks/useFinalizeUpload';
 import { Button } from '@mui/material';
 import { useCallback, useState } from 'react';
 import { Link } from 'react-router-dom';
@@ -83,7 +83,7 @@ function View({
 
 function Model() {
   const [json, setJson] = useState(defaultJson);
-  const mutation = useListAircraftFolders();
+  const mutation = useFinalizeUpload();
   const resultJson = mutation?.data?.data || null;
 
   // https://www.npmjs.com/package/react-json-editor-ajrm
