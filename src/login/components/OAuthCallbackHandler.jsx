@@ -3,7 +3,8 @@ import { css } from '@emotion/react';
 import { useAuthStore } from 'login/hooks/useAuthStore';
 import { useSignIn } from 'login/hooks/useSignIn';
 import { useEffect } from 'react';
-import { useSearchParams } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 const styles = {
   center: css({
@@ -34,11 +35,21 @@ function View() {
 }
 
 function Model() {
-  const { authSecret } = useAuthStore();
+  const { authSecret, logout } = useAuthStore();
+  const navigate = useNavigate();
   const signIn = useSignIn();
   const [searchParams] = useSearchParams();
 
   const authCode = searchParams.get('code');
+  const isDenied = searchParams.get('outcome') === 'denied';
+
+  useEffect(() => {
+    if (isDenied) {
+      toast.error('Access denied due to oauth denial.');
+      logout();
+      navigate('/');
+    }
+  }, [isDenied, logout, navigate]);
 
   useEffect(() => {
     if (authSecret && authCode) {
