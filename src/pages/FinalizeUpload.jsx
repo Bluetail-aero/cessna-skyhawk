@@ -84,11 +84,10 @@ function View({
 function Model() {
   const [json, setJson] = useState(defaultJson);
   const mutation = useListAircraftFolders();
-  const resultJson = mutation?.data?.data?.data || null;
+  const resultJson = mutation?.data?.data || null;
 
   // https://www.npmjs.com/package/react-json-editor-ajrm
   const doChange = useCallback(({ jsObject }) => {
-    debugger;
     setJson(jsObject);
   }, []);
 
