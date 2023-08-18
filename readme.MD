@@ -1,6 +1,6 @@
 # WTF is this?
 
-The Cessna Skyhawk 🛩️ is a simple plane, a humble plane, a workhouse that is the backbone of pilot training.  Likewise, the Bluetail cessna-skyhawk project is a demonstration app intended for demonstrating how to consume the Bluetial public API and Oauth service.
+The Cessna Skyhawk 🛩️ is a simple plane, a humble plane, a workhouse that is the backbone of pilot training.  Likewise, the Bluetail cessna-skyhawk project is a demonstration app showing how to consume the Bluetial public API and Oauth service.
 
 There are lot of moving parts in this solution and it's difficult to test each part in isolation.  This application is a basic little test harness that we can use to develop, debug and diagnose issues with those systems in all the different environments.
 
