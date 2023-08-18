@@ -32,8 +32,8 @@ The appthnuses the authCode and their client_secret to convert that into a more 
 
 The app provides two (crude) functions available for the user to perform:
 
-1. Upload a document to a folder.
-2. Logout (purge local storage)
+- Upload a document to a folder.
+- Logout (purge local storage)
 
 TADA! 🎉
 
