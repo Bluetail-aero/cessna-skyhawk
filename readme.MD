@@ -1,8 +1,8 @@
 # WTF is this?
 
-The Cessna Skyhawk 🛩️ is a simple plane, a humble plane, a workhouse that is the backbone of pilot training.  Likewise, the Bluetail cessna-skyhawk project is a demonstration app showing how to consume the Bluetial public API and Oauth service.
+The Cessna Skyhawk 🛩️ is a simple plane, a humble plane, a workhouse that is the backbone of pilot training. Likewise, the Bluetail cessna-skyhawk project is a demonstration app showing how to consume the Bluetail public API and OAuth service.
 
-There are lot of moving parts in this solution and it's difficult to test each part in isolation.  This application is a basic little test harness that we can use to develop, debug and diagnose issues with those systems in all the different environments.
+There are a lot of moving parts in this solution and it's difficult to test each part in isolation. This application is a basic little test harness that we can use to develop, debug and diagnose issues with those systems in all the different environments.
 
 
 ## How do we access this app?
@@ -16,10 +16,9 @@ There are lot of moving parts in this solution and it's difficult to test each p
 
 ## How does it work? What does it do?
 
-Cessna-skyhawk is a React app that relies on browser localstorage for persisting state. It doesn't have a "backend" other than the API and auth server it is demonstrating.
+Cessna-Skyhawk is a React app that relies on browser local storage for persisting state. It doesn't have a "backend" other than the API and auth server it is demonstrating.
 
-Using only local storage: if a user is authenticated then it will store their API token in local browser storage.
-If there is no token, they aren't logged in, so it will just show a login button.
+Using only local storage: if a user is authenticated then it will store their API token in local browser storage. If there is no token, they aren't logged in, so it will just show a login button.
 
 | Environment | URL                                                        |
 | ----------- | ---------------------------------------------------------- |
@@ -27,8 +26,7 @@ If there is no token, they aren't logged in, so it will just show a login button
 | qa          | https://auth.qa.bluetail-dev.com/oauth/authenticate?response_type=code&client_id=cessna_skyhawk&redirect_uri=https://cessna-skyhawk.qa.bluetail-dev.com/oauth_callback |
 | prod        | https://auth.bluetail.aero/oauth/authenticate?response_type=code&client_id=cessna_skyhawk&redirect_uri=https://cessna-skyhawk.prod.bluetail-dev.com/oauth_callback |
 
-The user authenticates on the relevenat auth server and is redirected back to the app with an authCode.
-The appthnuses the authCode and their client_secret to convert that into a more useful access_token and a refresh_token (which is stores in loca storage).
+The user authenticates on the relevant auth server and is redirected back to the app with an authCode. The app uses the authCode and their client_secret to convert that into a more useful access_token and a refresh_token (which is stores in local storage).
 
 The app provides two (crude) functions available for the user to perform:
 
