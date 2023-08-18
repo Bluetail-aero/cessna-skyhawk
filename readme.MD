@@ -43,9 +43,9 @@ TADA! 🎉
 # Running the app locally
 
 To run this app locally ("full stack") you will want to also run these dependencies:
-- [Auth Server](https://github.com/Bluetail-aero/auth)
-- [Public API](https://github.com/Bluetail-aero/public-api)
-- [Bluetail Backend](https://github.com/Bluetail-aero/backend)
+- Auth Server
+- Public API
+- Bluetail Backend
 
 ### Example local env
 
