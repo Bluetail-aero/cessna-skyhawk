@@ -7,6 +7,7 @@ import JSONPretty from 'react-json-pretty';
 import { useRequestUpload } from 'documentation/hooks/useRequestUpload';
 import { Button } from '@mui/material';
 import { useCallback, useState } from 'react';
+import UploadFileToRequestUploadUrl from 'documentation/components/UploadFileToRequestUploadUrl';
 
 const defaultJson = {
   tail_number: 'N1000N',
@@ -42,6 +43,7 @@ function View({
   doSubmit,
   doChange,
   resultJson,
+  uploadUrl,
 }) {
   return (
     <div>
@@ -67,6 +69,11 @@ function View({
         />
       </div>
       )}
+      {uploadUrl && (
+        <UploadFileToRequestUploadUrl
+          s3Url={uploadUrl}
+        />
+      )}
     </div>
   );
 }
@@ -75,6 +82,7 @@ function Model() {
   const [json, setJson] = useState(defaultJson);
   const mutation = useRequestUpload();
   const resultJson = mutation?.data?.data || null;
+  const uploadUrl = resultJson?.file_upload_url;
 
   // https://www.npmjs.com/package/react-json-editor-ajrm
   const doChange = useCallback(({ jsObject }) => {
@@ -91,6 +99,7 @@ function Model() {
     doSubmit,
     doChange,
     resultJson,
+    uploadUrl,
   };
 
   return (
