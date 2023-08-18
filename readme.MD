@@ -31,8 +31,9 @@ The user authenticates on the relevenat auth server and is redirected back to th
 The appthnuses the authCode and their client_secret to convert that into a more useful access_token and a refresh_token (which is stores in loca storage).
 
 The app provides two (crude) functions available for the user to perform:
-2. Upload a document to a folder.
-3. Logout (purge local storage)
+
+1. Upload a document to a folder.
+2. Logout (purge local storage)
 
 TADA! 🎉
 
