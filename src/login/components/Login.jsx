@@ -64,7 +64,7 @@ function Model() {
 
   const onClick = useCallback(() => {
     window.location.href = `
-      ${process.env.REACT_APP_OAUTH_SERVER}/oauth/authenticate?response_type=code&client_id=${process.env.REACT_APP_OAUTH_CLIENT_ID}&redirect_uri=${process.env.REACT_APP_OAUTH_REDIRECT_URL}&state=none
+      ${process.env.REACT_APP_OAUTH_SERVER}/oauth/authenticate?response_type=code&client_id=${process.env.REACT_APP_OAUTH_CLIENT_ID}&redirect_uri=${process.env.REACT_APP_OAUTH_REDIRECT_URL}&scope=read%20document.upload&state=none
     `;
   }, []);
 
