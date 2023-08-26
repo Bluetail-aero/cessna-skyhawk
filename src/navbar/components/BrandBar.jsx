@@ -1,8 +1,9 @@
 /** @jsxImportSource @emotion/react */
 import {
-  Box,
+  Box, Chip
 } from '@mui/material';
 import { css } from '@emotion/react';
+import { useAuthStore } from 'login/hooks/useAuthStore';
 
 const actionBarBoxStyle = css({
   display: 'flex',
@@ -17,17 +18,24 @@ const actionBarBoxStyle = css({
   color: 'white',
 });
 
-function View() {
+const chipStyle = css({
+  marginLeft: 'auto',
+});
+
+function View({ accessToken }) {
   return (
     <Box css={actionBarBoxStyle}>
       Cessna Skyhawk 🛩️
+      <Chip label={`Access Token: ${accessToken}`} css={chipStyle} />
     </Box>
   );
 }
 
 function Model() {
-  const hookProps = {
+  const { accessToken } = useAuthStore();
 
+  const hookProps = {
+    accessToken,
   };
 
   return (
