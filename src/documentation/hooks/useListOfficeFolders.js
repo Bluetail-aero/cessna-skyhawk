@@ -7,7 +7,7 @@ import { useAuthStore } from 'login/hooks/useAuthStore';
 import { useCallback, useRef } from 'react';
 import { toast } from 'react-toastify';
 
-const listOfficeFolders = async (token, aircraft) => postApi('/documents/list_office_folders', {
+const listOfficeFolders = async (token, aircraft) => postApi('/office/list_folders', {
   aircraft,
 }, {
   headers: {
