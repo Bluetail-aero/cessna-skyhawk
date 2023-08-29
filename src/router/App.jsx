@@ -4,6 +4,7 @@ import {
   Navigate,
 } from 'react-router-dom';
 
+import ListAircraft from 'pages/ListAircraft';
 import ListAircraftFolders from 'pages/ListAircraftFolders';
 import ListOfficeFolders from 'pages/ListOfficeFolders';
 import FinalizeUpload from 'pages/FinalizeUpload';
@@ -15,6 +16,10 @@ import 'react-toastify/dist/ReactToastify.css';
 function View() {
   return (
     <Routes>
+      <Route
+        path="/listAircraft"
+        element={<ListAircraft />}
+      />
       <Route
         path="/listAircraftFolders"
         element={<ListAircraftFolders />}
@@ -33,7 +38,7 @@ function View() {
       />
       <Route
         path="*"
-        element={<Navigate to="/listAircraftFolders" />}
+        element={<Navigate to="/listAircraft" />}
       />
     </Routes>
   );
