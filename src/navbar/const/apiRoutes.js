@@ -1,7 +1,7 @@
 export const apiRoutes = [
   {
-    text: 'Finalize Upload',
-    route: '/finalizeUpload',
+    text: 'List Aircraft',
+    route: '/listAircraft',
   }, {
     text: 'List Aircraft Folders',
     route: '/listAircraftFolders',
@@ -11,6 +11,9 @@ export const apiRoutes = [
   }, {
     text: 'Request Upload',
     route: '/requestUpload',
+  }, {
+    text: 'Finalize Upload',
+    route: '/finalizeUpload',
   }
 ];
 
