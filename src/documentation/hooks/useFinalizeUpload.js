@@ -17,7 +17,7 @@ export const useFinalizeUpload = () => {
   const { accessToken, logout } = useAuthStore();
   const toastId = useRef(null);
 
-  const tokenizedApi = useCallback((aircraftList) => finalizeUpload(accessToken, aircraftList), [accessToken]);
+  const tokenizedApi = useCallback((thBigD) => finalizeUpload(accessToken, thBigD), [accessToken]);
 
   const mutation = useMutation({
     mutationFn: tokenizedApi,

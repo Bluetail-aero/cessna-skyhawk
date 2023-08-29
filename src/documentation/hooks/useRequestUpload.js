@@ -17,7 +17,7 @@ export const useRequestUpload = () => {
   const { accessToken, logout } = useAuthStore();
   const toastId = useRef(null);
 
-  const tokenizedApi = useCallback((aircraftList) => requestUpload(accessToken, aircraftList), [accessToken]);
+  const tokenizedApi = useCallback((theBigD) => requestUpload(accessToken, theBigD), [accessToken]);
 
   const mutation = useMutation({
     mutationFn: tokenizedApi,

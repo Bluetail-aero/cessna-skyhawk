@@ -7,8 +7,8 @@ import { useAuthStore } from 'login/hooks/useAuthStore';
 import { useCallback, useRef } from 'react';
 import { toast } from 'react-toastify';
 
-const listOfficeFolders = async (token, aircraft) => postApi('/documents/list_office_folders', {
-  aircraft,
+const listOfficeFolders = async (token, body) => postApi('/documents/list_office_folders', {
+  body,
 }, {
   headers: {
     Authorization: `Bearer ${token}`,
@@ -19,7 +19,7 @@ export const useListOfficeFolders = () => {
   const { accessToken, logout } = useAuthStore();
   const toastId = useRef(null);
 
-  const tokenizedApi = useCallback((aircraftList) => listOfficeFolders(accessToken, aircraftList), [accessToken]);
+  const tokenizedApi = useCallback((theBigD) => listOfficeFolders(accessToken, theBigD), [accessToken]);
 
   const mutation = useMutation({
     mutationFn: tokenizedApi,
