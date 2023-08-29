@@ -14,6 +14,7 @@ const defaultJson = {
   serial_number: '310H0104',
   file_name: 'Frenchie_310H0104_2021-09-30_10-00-00.pdf',
   prevent_duplicates: false,
+  folder_key: 'C:9',
 };
 
 const styles = {
