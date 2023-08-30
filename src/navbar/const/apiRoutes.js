@@ -6,6 +6,9 @@ export const apiRoutes = [
     text: 'List Aircraft Folders',
     route: '/listAircraftFolders',
   }, {
+    text: 'Create Aircraft Folder',
+    route: '/createAircraftFolder',
+  }, {
     text: 'List Office Folders',
     route: '/listOfficeFolders',
   }, {
