@@ -1,0 +1,30 @@
+# This Github Action will identify stale branches and mark them for deletion after a set period.
+#
+# By default, branches are identified as stale if their latest commit is older than 90 days. 
+# This is useful for repositories that have many contributors that work on and off, and may forget to cleanup 🧹
+#
+# How it works?
+# This Action look for branches whose last commit is older than a `days-before-branch-stale` days. 
+# It will first add a comment on the latest commit, notifying the contributor that their branch is stale. 
+# If no action is taken before `days-before-branch-delete` days, the branch will be removed.
+#
+# This can be prevented by removing the comment, or adding new commits to the branch.
+#
+# See https://github.com/marketplace/actions/remove-stale-branches for configuration options
+name: Remove stale branches with a notification
+
+on:
+  schedule:
+    - cron: "0 0 * * *" # Everday at midnight
+
+jobs:
+  remove-stale-branches:
+    name: Remove Stale Branches
+    runs-on: ubuntu-latest
+    steps:
+      - uses: fpicalausa/remove-stale-branches@v2.0.1
+        with:
+          dry-run: false # Check out the console output before setting this to false
+          exempt-branches-regex: "^(dev|master)$"
+          days-before-branch-stale: 30
+          days-before-branch-delete: 5
