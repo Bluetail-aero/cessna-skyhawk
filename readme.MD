@@ -60,5 +60,3 @@ REACT_APP_PUBLIC_API=http://localhost:3004
 npm i
 npm run start:local
 ```
-
-Note: Testing amplify->slack deploy message.
