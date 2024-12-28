@@ -25,6 +25,6 @@ jobs:
       - uses: fpicalausa/remove-stale-branches@v2.0.1
         with:
           dry-run: false # Check out the console output before setting this to false
-          exempt-branches-regex: "^(dev|master)$"
+          exempt-branches-regex: "^(dev|staging|master)$"
           days-before-branch-stale: 30
           days-before-branch-delete: 5
