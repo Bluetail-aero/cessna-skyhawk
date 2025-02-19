@@ -7,7 +7,6 @@
   },
   "private": true,
   "scripts": {
-    "delta:staging": "git pull origin dev && git pull origin staging && git log --oneline staging..dev",
     "start": "echo 'You are looking for either start:local, start:qa or start:prod' && exit 1",
     "start:env": "env-cmd -f env/.env react-scripts start",
     "start:local": "env-cmd -f env/.env.local react-scripts start",
