@@ -11,10 +11,9 @@ import UploadFileToRequestUploadUrl from 'documentation/components/UploadFileToR
 
 const defaultJson = {
   tail_number: 'N1000N',
-  serial_number: '310H0104',
+  folder_key: 'C:9',
   file_name: 'Frenchie_310H0104_2021-09-30_10-00-00.pdf',
   prevent_duplicates: false,
-  folder_key: 'C:9',
 };
 
 const styles = {
@@ -61,14 +60,14 @@ function View({
         <Button css={styles.submitButton} variant="contained" type="submit">Try it!</Button>
       </form>
       {resultJson && (
-      <div css={styles.section}>
-        <div css={styles.resultHeader}>Result</div>
-        <JSONPretty
-          data={resultJson}
-          css={styles.jsonResult}
-          theme={JSONPrettyMon}
-        />
-      </div>
+        <div css={styles.section}>
+          <div css={styles.resultHeader}>Result</div>
+          <JSONPretty
+            data={resultJson}
+            css={styles.jsonResult}
+            theme={JSONPrettyMon}
+          />
+        </div>
       )}
       {uploadUrl && (
         <UploadFileToRequestUploadUrl
