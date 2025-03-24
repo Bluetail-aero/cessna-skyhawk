@@ -11,11 +11,9 @@ import { useCallback, useState } from 'react';
 const defaultJson = [
   {
     tail_number: 'N1000N',
-    serial_number: '310H0104'
   },
   {
     tail_number: 'NBT500',
-    serial_number: '5531'
   }
 ];
 

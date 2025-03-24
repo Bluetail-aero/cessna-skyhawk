@@ -14,7 +14,6 @@ const defaultJson = {
   parent_key: 'L:6',
   aircraft: {
     tail_number: 'N1000N',
-    serial_number: '310H0104',
   }
 };
 
@@ -61,14 +60,14 @@ function View({
         <Button css={styles.submitButton} variant="contained" type="submit">Try it!</Button>
       </form>
       {resultJson && (
-      <div css={styles.section}>
-        <div css={styles.resultHeader}>Result</div>
-        <JSONPretty
-          data={resultJson}
-          css={styles.jsonResult}
-          theme={JSONPrettyMon}
-        />
-      </div>
+        <div css={styles.section}>
+          <div css={styles.resultHeader}>Result</div>
+          <JSONPretty
+            data={resultJson}
+            css={styles.jsonResult}
+            theme={JSONPrettyMon}
+          />
+        </div>
       )}
     </div>
   );
