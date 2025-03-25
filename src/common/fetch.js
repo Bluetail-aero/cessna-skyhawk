@@ -1,6 +1,21 @@
 import { authStore } from 'login/hooks/useAuthStore';
 import { toast } from 'react-toastify';
 
+/**
+ * Joins key/value pairs together using the provided delimiters.
+ * @param {object} data - object containing key/values pairs to join.
+ * @param {string} options.keyValueDelimiter - delimiter between key and value. Default is '='.
+ * @param {string} options.pairDelimiter - delimiter between key/value pairs. Default is '&'.
+ * @returns {string} - string of key/value pairs joined together using the delimiters.
+ */
+function joinKeyValuePairs(data, options = {}) {
+  const keyValueDelimiter = options?.keyValueDelimiter || '=';
+  const pairDelimiter = options?.pairDelimiter || '&';
+  return Object.entries(data)
+    .map(([key, value]) => `${key}${keyValueDelimiter}${value}`)
+    .join(pairDelimiter);
+}
+
 const BluetailAPI = async (url, options) => {
   const domain = process.env.REACT_APP_PUBLIC_API || '';
 
@@ -133,5 +148,5 @@ const patchApi = async (url, body, opts = {}) => mutateApi(url, 'PATCH', body, o
 const deleteApi = async (url, body, opts = {}) => mutateApi(url, 'DELETE', body, opts);
 
 export {
-  getApi, postApi, putApi, deleteApi, patchApi,
+  getApi, postApi, putApi, deleteApi, patchApi, joinKeyValuePairs,
 };

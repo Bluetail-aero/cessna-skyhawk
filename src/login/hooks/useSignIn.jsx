@@ -1,7 +1,7 @@
 /* eslint-disable max-len */
 import { useMutation } from '@tanstack/react-query';
 // import { queryClient } from 'common/const/queryClient';
-import { postApi } from 'common/fetch';
+import { postApi, joinKeyValuePairs } from 'common/fetch';
 import { useRef } from 'react';
 import { useNavigate } from 'react-router';
 import { toast } from 'react-toastify';
@@ -13,16 +13,10 @@ const signIn = async ({ secret, authCode }) => {
     code: authCode,
     redirect_uri: process.env.REACT_APP_OAUTH_REDIRECT_URL,
   };
+  // Encode the data to use as the form body when posting.
+  const formBody = joinKeyValuePairs(data, { keyValueDelimiter: '=', pairDelimiter: '&' });
 
-  const formBody = [];
-
-  Object.entries(data).forEach(([key, value]) => {
-    const encodedKey = key;
-    const encodedValue = value;
-    formBody.push(`${encodedKey}=${encodedValue}`);
-  });
-
-  return postApi(`${process.env.REACT_APP_OAUTH_SERVER}/oauth/access_token`, formBody.join('&'), {
+  return postApi(`${process.env.REACT_APP_OAUTH_SERVER}/oauth/access_token`, formBody, {
     external: true,
     noJSON: true,
     headers: {
