@@ -28,3 +28,5 @@ jobs:
           exempt-branches-regex: "^(dev|staging|master)$"
           days-before-branch-stale: 30
           days-before-branch-delete: 5
+          ignore-unknown-authors: true
+          default-recipient: JasonGloverNZ
