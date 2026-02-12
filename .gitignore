@@ -23,3 +23,6 @@ node_modules
 *.njsproj
 *.sln
 *.sw?
+
+# Git worktrees (used by Claude for branch-based development)
+worktrees/
