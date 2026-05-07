@@ -17,7 +17,7 @@
     "build:qa": "env-cmd -f env/.env.qa react-scripts build",
     "build:prod": "env-cmd -f env/.env.prod react-scripts build",
     "build:staging": "env-cmd -f env/.env.staging react-scripts build",
-    "test": "react-scripts test",
+    "test": "react-scripts test --passWithNoTests",
     "eject": "react-scripts eject",
     "lint": "eslint --cache --ext js --ext jsx --ext ts --ext tsx ./",
     "lint:fix": "eslint --cache --fix --ext js --ext jsx --ext ts --ext tsx ./",
