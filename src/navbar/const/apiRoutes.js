@@ -18,8 +18,8 @@ export const apiRoutes = [
     text: 'Create Aircraft Folder',
     route: '/createAircraftFolder',
   }, {
-    text: 'List Office Folders',
-    route: '/listOfficeFolders',
+    text: 'List Operations Folders',
+    route: '/listOperationsFolders',
   }, {
     text: 'Request Upload',
     route: '/requestUpload',

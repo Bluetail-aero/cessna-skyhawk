@@ -2,7 +2,7 @@
 import { css } from '@emotion/react';
 import JSONPrettyMon from 'react-json-pretty/dist/monikai';
 import JSONPretty from 'react-json-pretty';
-import { useListOfficeFolders } from 'documentation/hooks/useListOfficeFolders';
+import { useListOperationsFolders } from 'documentation/hooks/useListOperationsFolders';
 import { Button } from '@mui/material';
 import { useCallback } from 'react';
 
@@ -48,7 +48,7 @@ function View({
 }
 
 function Model() {
-  const mutation = useListOfficeFolders();
+  const mutation = useListOperationsFolders();
   const resultJson = mutation?.data?.data?.data || null;
 
   const doSubmit = useCallback((event) => {

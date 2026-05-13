@@ -9,7 +9,7 @@ import GetMyAccounts from 'pages/GetMyAccounts';
 import SwitchAccount from 'pages/SwitchAccount';
 import ListAircraft from 'pages/ListAircraft';
 import ListAircraftFolders from 'pages/ListAircraftFolders';
-import ListOfficeFolders from 'pages/ListOfficeFolders';
+import ListOperationsFolders from 'pages/ListOperationsFolders';
 import FinalizeUpload from 'pages/FinalizeUpload';
 import RequestUpload from 'pages/RequestUpload';
 import CreateAircraftFolder from 'pages/CreateAircraftFolder';
@@ -45,8 +45,8 @@ function View() {
         element={<ListAircraftFolders />}
       />
       <Route
-        path="/listOfficeFolders"
-        element={<ListOfficeFolders />}
+        path="/listOperationsFolders"
+        element={<ListOperationsFolders />}
       />
       <Route
         path="/requestUpload"
