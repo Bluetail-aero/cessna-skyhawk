@@ -1,24 +1,22 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable max-len */
 import { useMutation } from '@tanstack/react-query';
-import { postApi } from 'common/fetch';
+import { getApi } from 'common/fetch';
 import { useAuthStore } from 'login/hooks/useAuthStore';
 import { useCallback, useRef } from 'react';
 import { toast } from 'react-toastify';
 
-// /office/list_folders is a POST that takes no body — the company is inferred from the
-// OAuth token. We post an empty object so the JSON Content-Type header still applies.
-const listOfficeFolders = async (token) => postApi('/office/list_folders', {}, {
+const getMe = async (token) => getApi('/me', {
   headers: {
     Authorization: `Bearer ${token}`,
   },
 });
 
-export const useListOfficeFolders = () => {
+export const useGetMe = () => {
   const { accessToken, logout } = useAuthStore();
   const toastId = useRef(null);
 
-  const tokenizedApi = useCallback(() => listOfficeFolders(accessToken), [accessToken]);
+  const tokenizedApi = useCallback(() => getMe(accessToken), [accessToken]);
 
   const mutation = useMutation({
     mutationFn: tokenizedApi,

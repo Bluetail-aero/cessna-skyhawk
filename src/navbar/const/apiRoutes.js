@@ -1,5 +1,14 @@
 export const apiRoutes = [
   {
+    text: 'Get Me',
+    route: '/getMe',
+  }, {
+    text: 'Get My Accounts',
+    route: '/getMyAccounts',
+  }, {
+    text: 'Switch Account',
+    route: '/switchAccount',
+  }, {
     text: 'List Aircraft',
     route: '/listAircraft',
   }, {
@@ -17,7 +26,7 @@ export const apiRoutes = [
   }, {
     text: 'Finalize Upload',
     route: '/finalizeUpload',
-  }
+  },
 ];
 
 export const getRouteTextByPathname = (currentUrl) => {

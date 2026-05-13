@@ -4,6 +4,9 @@ import {
   Navigate,
 } from 'react-router-dom';
 
+import GetMe from 'pages/GetMe';
+import GetMyAccounts from 'pages/GetMyAccounts';
+import SwitchAccount from 'pages/SwitchAccount';
 import ListAircraft from 'pages/ListAircraft';
 import ListAircraftFolders from 'pages/ListAircraftFolders';
 import ListOfficeFolders from 'pages/ListOfficeFolders';
@@ -17,6 +20,18 @@ import 'react-toastify/dist/ReactToastify.css';
 function View() {
   return (
     <Routes>
+      <Route
+        path="/getMe"
+        element={<GetMe />}
+      />
+      <Route
+        path="/getMyAccounts"
+        element={<GetMyAccounts />}
+      />
+      <Route
+        path="/switchAccount"
+        element={<SwitchAccount />}
+      />
       <Route
         path="/createAircraftFolder"
         element={<CreateAircraftFolder />}
@@ -43,7 +58,7 @@ function View() {
       />
       <Route
         path="*"
-        element={<Navigate to="/listAircraft" />}
+        element={<Navigate to="/getMe" />}
       />
     </Routes>
   );
