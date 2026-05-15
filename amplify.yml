@@ -13,13 +13,11 @@ frontend:
         - if [ "${AWS_BRANCH}" = "master" ]; then pnpm run build:prod; fi
     postBuild:
       commands:
-        # --- Changelog notification to Slack ---
-        # Fetch the last deployed commit from SSM (falls back to HEAD~1 if not set)
+        # --- Deploy notification to Slack ---
+        # Shows the last few commits as context. Stateless — same commit may
+        # appear in consecutive build messages.
         - |
-          PREV_COMMIT=$(aws ssm get-parameter --name "/amplify/cessna-skyhawk/${AWS_BRANCH}/last-deployed-commit" --query "Parameter.Value" --output text 2>/dev/null || echo "")
-          if [ -z "$PREV_COMMIT" ] || [ "$PREV_COMMIT" = "None" ]; then
-            PREV_COMMIT=$(git rev-parse HEAD~1)
-          fi
+          PREV_COMMIT=$(git rev-parse HEAD~5 2>/dev/null || git rev-parse HEAD~1 2>/dev/null || git rev-parse HEAD)
           REPO="Bluetail-aero/cessna-skyhawk"
           COMMIT_SHORT=$(git rev-parse --short HEAD)
           COMMIT_LINK="https://github.com/${REPO}/commit/$(git rev-parse HEAD)"
@@ -33,7 +31,7 @@ frontend:
           done
 
           MESSAGE=":rocket: Amplify build succeeded for \`${REPO}\` on *${AWS_BRANCH}*\nBranch \`${AWS_BRANCH}\` → <${COMMIT_LINK}|${COMMIT_SHORT}>"
-          [ -n "$LINES" ] && MESSAGE="${MESSAGE}\n\n*Commits*${LINES}"
+          [ -n "$LINES" ] && MESSAGE="${MESSAGE}\n\n*Recent commits*${LINES}"
 
           case "$AWS_BRANCH" in
             dev)     CHANNEL="feed-qa-deployments" ;;
@@ -44,14 +42,12 @@ frontend:
           if [ -z "$CHANNEL" ] || [ -z "$SLACK_BOT_TOKEN" ]; then
             echo "Skipping Slack notify (branch=$AWS_BRANCH, token set=$([ -n "$SLACK_BOT_TOKEN" ] && echo yes || echo no))"
           else
-            PAYLOAD=$(jq -n --arg ch "$CHANNEL" --arg text "$(echo -e "$MESSAGE")" '{channel:$ch, text:$text}')
+            PAYLOAD=$(python3 -c 'import json,sys; print(json.dumps({"channel": sys.argv[1], "text": sys.argv[2]}))' "$CHANNEL" "$(echo -e "$MESSAGE")")
             curl -s -X POST https://slack.com/api/chat.postMessage \
               -H "Authorization: Bearer ${SLACK_BOT_TOKEN}" \
               -H "Content-Type: application/json; charset=utf-8" \
               -d "$PAYLOAD"
           fi
-          # Store current commit as last deployed
-          aws ssm put-parameter --name "/amplify/cessna-skyhawk/${AWS_BRANCH}/last-deployed-commit" --value "$(git rev-parse HEAD)" --type String --overwrite
   artifacts:
     baseDirectory: build
     files:
