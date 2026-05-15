@@ -44,14 +44,14 @@ frontend:
           if [ -z "$CHANNEL" ] || [ -z "$SLACK_BOT_TOKEN" ]; then
             echo "Skipping Slack notify (branch=$AWS_BRANCH, token set=$([ -n "$SLACK_BOT_TOKEN" ] && echo yes || echo no))"
           else
-            PAYLOAD=$(jq -n --arg ch "$CHANNEL" --arg text "$(echo -e "$MESSAGE")" '{channel:$ch, text:$text}')
+            PAYLOAD=$(python3 -c 'import json,sys; print(json.dumps({"channel": sys.argv[1], "text": sys.argv[2]}))' "$CHANNEL" "$(echo -e "$MESSAGE")")
             curl -s -X POST https://slack.com/api/chat.postMessage \
               -H "Authorization: Bearer ${SLACK_BOT_TOKEN}" \
               -H "Content-Type: application/json; charset=utf-8" \
               -d "$PAYLOAD"
           fi
-          # Store current commit as last deployed
-          aws ssm put-parameter --name "/amplify/cessna-skyhawk/${AWS_BRANCH}/last-deployed-commit" --value "$(git rev-parse HEAD)" --type String --overwrite
+          # Store current commit as last deployed (best-effort; needs ssm:PutParameter on the namespaced path)
+          aws ssm put-parameter --name "/amplify/cessna-skyhawk/${AWS_BRANCH}/last-deployed-commit" --value "$(git rev-parse HEAD)" --type String --overwrite || echo "SSM put-parameter failed (check IAM permission ssm:PutParameter on /amplify/cessna-skyhawk/*)"
   artifacts:
     baseDirectory: build
     files:
