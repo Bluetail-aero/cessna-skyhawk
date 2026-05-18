@@ -9,7 +9,8 @@ The Cessna Skyhawk 🛩️ is a demonstration app showing how to consume the Blu
 ## System Dependencies
 
 ### Prerequisites
-- Node.js (20.x)
+- Node.js (24.x)
+- pnpm 10.x (`corepack enable && corepack prepare pnpm@10.33.0 --activate`)
 
 ### External Services
 - None
@@ -28,12 +29,7 @@ The Cessna Skyhawk 🛩️ is a demonstration app showing how to consume the Blu
 1. Create a `.env` file based on the [Sample .env file](/.env.sample)
 2. Install dependencies:
    ```
-   npm ci
-   ```
-
-**Note:** To refresh dependencies:
-   ```
-   npm run refresh
+   pnpm install --frozen-lockfile
    ```
 
 ### Environment Variables
@@ -50,7 +46,7 @@ REACT_APP_PUBLIC_API=http://localhost:3004
 
 ### Running Locally
 ```
-npm run start:local
+pnpm run start:local
 ```
 
 The app will be available at http://localhost:3006

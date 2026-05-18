@@ -1,0 +1,68 @@
+name: PR Checks
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+    branches: [dev, staging, master]
+
+concurrency:
+  group: pr-checks-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  NODE_VERSION: 24
+
+jobs:
+  checks:
+    name: PR Checks
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: ./.github/actions/setup-bluetail
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          ssh-private-key: ${{ secrets.SSH_DEPLOYBOT_PRIVATE_KEY }}
+
+      - name: Detect available scripts
+        id: scripts
+        run: |
+          has() {
+            node -e "const s=(require('./package.json').scripts)||{};process.exit(s['$1']?0:1)" 2>/dev/null
+          }
+          for s in build lint test test:integration test:e2e; do
+            key="has_$(echo "$s" | tr ':' '_')"
+            if has "$s"; then val=true; else val=false; fi
+            echo "$key=$val" >> "$GITHUB_OUTPUT"
+            echo "$s -> $val"
+          done
+
+      - name: Build
+        if: steps.scripts.outputs.has_build == 'true'
+        run: pnpm run build
+
+      - name: Validate emitted JS
+        if: steps.scripts.outputs.has_build == 'true' && hashFiles('dist/**/*.js') != ''
+        run: find dist -name "*.js" -exec node --check {} \;
+
+      - name: Lint
+        if: steps.scripts.outputs.has_lint == 'true'
+        run: pnpm run lint
+
+      - name: Unit tests
+        if: steps.scripts.outputs.has_test == 'true'
+        run: pnpm test
+
+      - name: Integration tests
+        if: steps.scripts.outputs.has_test_integration == 'true'
+        env:
+          SUPPRESS_NO_CONFIG_WARNING: "true"
+          NODE_CONFIG_STRICT_MODE: "false"
+        run: pnpm run test:integration
+
+      - name: E2E tests
+        if: steps.scripts.outputs.has_test_e2e == 'true'
+        env:
+          SUPPRESS_NO_CONFIG_WARNING: "true"
+          NODE_CONFIG_STRICT_MODE: "false"
+        run: pnpm run test:e2e
