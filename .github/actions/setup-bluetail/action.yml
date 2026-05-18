@@ -1,0 +1,39 @@
+name: Setup Bluetail Node + pnpm
+description: SSH-keyed checkout + pnpm install with cache
+inputs:
+  node-version:
+    description: Node major version
+    required: false
+    default: "24"
+  ssh-private-key:
+    description: SSH private key for @BluetailDeployBot, used to fetch private GitHub-hosted dependencies
+    required: true
+runs:
+  using: composite
+  steps:
+    - name: Set up SSH for private GitHub packages
+      shell: bash
+      run: |
+        mkdir -p ~/.ssh
+        echo "${{ inputs.ssh-private-key }}" > ~/.ssh/id_rsa
+        chmod 600 ~/.ssh/id_rsa
+        ssh-keyscan github.com >> ~/.ssh/known_hosts
+
+    - name: Test SSH authentication
+      shell: bash
+      run: ssh -o StrictHostKeyChecking=no -T git@github.com || true
+
+    - uses: pnpm/action-setup@v4
+
+    - uses: actions/setup-node@v4
+      with:
+        node-version: ${{ inputs.node-version }}
+        cache: pnpm
+
+    - name: Configure git for SSH GitHub
+      shell: bash
+      run: git config --global url."git@github.com:".insteadOf "https://github.com/"
+
+    - name: Install dependencies
+      shell: bash
+      run: GIT_SSH_COMMAND="ssh -i ~/.ssh/id_rsa" pnpm install --frozen-lockfile
