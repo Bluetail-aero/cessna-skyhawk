@@ -1,5 +1,14 @@
 export const apiRoutes = [
   {
+    text: 'Get Me',
+    route: '/getMe',
+  }, {
+    text: 'Get My Accounts',
+    route: '/getMyAccounts',
+  }, {
+    text: 'Switch Account',
+    route: '/switchAccount',
+  }, {
     text: 'List Aircraft',
     route: '/listAircraft',
   }, {
@@ -9,15 +18,15 @@ export const apiRoutes = [
     text: 'Create Aircraft Folder',
     route: '/createAircraftFolder',
   }, {
-    text: 'List Office Folders',
-    route: '/listOfficeFolders',
+    text: 'List Operations Folders',
+    route: '/listOperationsFolders',
   }, {
     text: 'Request Upload',
     route: '/requestUpload',
   }, {
     text: 'Finalize Upload',
     route: '/finalizeUpload',
-  }
+  },
 ];
 
 export const getRouteTextByPathname = (currentUrl) => {

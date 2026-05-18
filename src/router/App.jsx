@@ -4,9 +4,12 @@ import {
   Navigate,
 } from 'react-router-dom';
 
+import GetMe from 'pages/GetMe';
+import GetMyAccounts from 'pages/GetMyAccounts';
+import SwitchAccount from 'pages/SwitchAccount';
 import ListAircraft from 'pages/ListAircraft';
 import ListAircraftFolders from 'pages/ListAircraftFolders';
-import ListOfficeFolders from 'pages/ListOfficeFolders';
+import ListOperationsFolders from 'pages/ListOperationsFolders';
 import FinalizeUpload from 'pages/FinalizeUpload';
 import RequestUpload from 'pages/RequestUpload';
 import CreateAircraftFolder from 'pages/CreateAircraftFolder';
@@ -17,6 +20,18 @@ import 'react-toastify/dist/ReactToastify.css';
 function View() {
   return (
     <Routes>
+      <Route
+        path="/getMe"
+        element={<GetMe />}
+      />
+      <Route
+        path="/getMyAccounts"
+        element={<GetMyAccounts />}
+      />
+      <Route
+        path="/switchAccount"
+        element={<SwitchAccount />}
+      />
       <Route
         path="/createAircraftFolder"
         element={<CreateAircraftFolder />}
@@ -30,8 +45,8 @@ function View() {
         element={<ListAircraftFolders />}
       />
       <Route
-        path="/listOfficeFolders"
-        element={<ListOfficeFolders />}
+        path="/listOperationsFolders"
+        element={<ListOperationsFolders />}
       />
       <Route
         path="/requestUpload"
@@ -43,7 +58,7 @@ function View() {
       />
       <Route
         path="*"
-        element={<Navigate to="/listAircraft" />}
+        element={<Navigate to="/getMe" />}
       />
     </Routes>
   );

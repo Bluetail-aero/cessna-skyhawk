@@ -5,7 +5,7 @@ module.exports = {
       'plugin:react-hooks/recommended',
       'plugin:@tanstack/eslint-plugin-query/recommended',
     ],
-    ignorePatterns: ['**/node_modules/*'],
+    ignorePatterns: ['**/node_modules/*', 'worktrees/**'],
     plugins: [
       'file-progress',
       '@tanstack/query',
