@@ -11,7 +11,6 @@ import UploadFileToRequestUploadUrl from 'documentation/components/UploadFileToR
 
 const defaultJson = {
   tail_number: 'N1000N',
-  folder_key: 'C:9',
   file_name: 'Frenchie_310H0104_2021-09-30_10-00-00.pdf',
   prevent_duplicates: false,
 };
