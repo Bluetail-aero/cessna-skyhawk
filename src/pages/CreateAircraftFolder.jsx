@@ -11,7 +11,6 @@ import { useCallback, useState } from 'react';
 const defaultJson = {
   name: 'Public',
   type: 'LOGBOOK',
-  parent_key: 'L:6',
   aircraft: {
     tail_number: 'N1000N',
   }
