@@ -32,6 +32,7 @@ frontend:
 
           MESSAGE=":rocket: Amplify build succeeded for \`${REPO}\` on *${AWS_BRANCH}*\nBranch \`${AWS_BRANCH}\` → <${COMMIT_LINK}|${COMMIT_SHORT}>"
           [ -n "$LINES" ] && MESSAGE="${MESSAGE}\n\n*Recent commits*${LINES}"
+          MESSAGE="${MESSAGE}\n\n:checkered_flag: :tada:"
 
           case "$AWS_BRANCH" in
             dev)     CHANNEL="feed-qa-deployments" ;;
@@ -51,7 +52,7 @@ frontend:
   artifacts:
     baseDirectory: build
     files:
-      - '**/*'
+      - "**/*"
   cache:
     paths:
       - node_modules/**/*
