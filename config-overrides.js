@@ -8,9 +8,8 @@ const path = require('path');
 // resolve. Appended after node_modules to preserve the original resolution order.
 // Wired up via react-app-rewired (see the start/build/test scripts in package.json).
 module.exports = function override(config) {
-  config.resolve.modules = [
-    ...(config.resolve.modules || ['node_modules']),
-    path.resolve(__dirname, 'src'),
-  ];
+  // Append src after node_modules (mutate, not reassign — CRA always defines
+  // resolve.modules as an array, and .push avoids the no-param-reassign lint rule).
+  config.resolve.modules.push(path.resolve(__dirname, 'src'));
   return config;
 };
