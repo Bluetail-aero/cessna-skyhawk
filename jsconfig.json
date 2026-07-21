@@ -1,6 +1,14 @@
 {
   "compilerOptions": {
-    "baseUrl": "./src"
+    "paths": {
+      "app/*": ["./src/app/*"],
+      "common/*": ["./src/common/*"],
+      "documentation/*": ["./src/documentation/*"],
+      "login/*": ["./src/login/*"],
+      "navbar/*": ["./src/navbar/*"],
+      "pages/*": ["./src/pages/*"],
+      "router/*": ["./src/router/*"]
+    }
   },
   "include": ["src"]
 }
