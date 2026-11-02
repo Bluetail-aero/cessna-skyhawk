@@ -93,5 +93,12 @@
     "last 2 versions",
     "not dead",
     "not ie 11"
-  ]
+  ],
+  "pnpm": {
+    "ignoredBuiltDependencies": [
+      "canvas",
+      "core-js",
+      "core-js-pure"
+    ]
+  }
 }
